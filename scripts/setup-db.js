@@ -25,14 +25,14 @@ async function setupDatabase() {
   const dbName = process.env.DB_NAME || "campaign_broadcast";
 
   // Create database
-  await connection.execute(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
+  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
   console.log(`✅ Database '${dbName}' created (or already exists)`);
 
   // Use the database
-  await connection.execute(`USE \`${dbName}\``);
+  await connection.query(`USE \`${dbName}\``);
 
   // Create users table
-  await connection.execute(`
+  await connection.query(`
     CREATE TABLE IF NOT EXISTS users (
       id INT PRIMARY KEY AUTO_INCREMENT,
       name VARCHAR(255) NOT NULL,
@@ -45,7 +45,7 @@ async function setupDatabase() {
   console.log("✅ Table 'users' created");
 
   // Create campaigns table
-  await connection.execute(`
+  await connection.query(`
     CREATE TABLE IF NOT EXISTS campaigns (
       id INT PRIMARY KEY AUTO_INCREMENT,
       name VARCHAR(255) NOT NULL,
@@ -59,7 +59,7 @@ async function setupDatabase() {
   console.log("✅ Table 'campaigns' created");
 
   // Create campaign_recipients table
-  await connection.execute(`
+  await connection.query(`
     CREATE TABLE IF NOT EXISTS campaign_recipients (
       id INT PRIMARY KEY AUTO_INCREMENT,
       campaign_id INT NOT NULL,
