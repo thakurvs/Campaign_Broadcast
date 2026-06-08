@@ -1,6 +1,8 @@
-import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProviderImport from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import pool from "./db";
+
+const CredentialsProvider = CredentialsProviderImport?.default ?? CredentialsProviderImport;
 
 export const authOptions = {
   providers: [
